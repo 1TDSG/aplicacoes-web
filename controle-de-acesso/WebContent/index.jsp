@@ -12,6 +12,6 @@
 <%-- Aqui vamos receber os atributos do request que estão sendo encaminhados pela Servlet. --%>
 <h2>Nome de Usuário  : <%=request.getAttribute("attrUser") %></h2>
 <h2>Senha do Usuário : <%=request.getAttribute("attrPass") %></h2>
-		
+		   
 </body>
 </html>
