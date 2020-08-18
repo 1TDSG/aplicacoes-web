@@ -20,11 +20,14 @@ img-width=400px
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="">MENU</a>
-			<a class="nav-item nav-link" href="montador?img-uri=um.jpg&img-url=./img/">Imagem-1</a>
-			<a class="nav-item nav-link" href="">Imagem-2</a>
-			<a class="nav-item nav-link" href="">Imagem-3</a>
-			<a class="nav-item nav-link" href="">Imagem-4</a>
-			<a class="nav-item nav-link" href="">Imagem-5</a>
+												<!--A construção de uma QueryString , utilizando doi parâmetros
+												img-uri e img-url sendo encaminhados para montador.
+												-->
+			<a class="nav-item nav-link" href="montador?img-uri=um.jpg&img-url=./img/&img-capt=Numero Um">Imagem-1</a>
+			<a class="nav-item nav-link" href="montador?img-uri=dois.jpg&img-url=./img/&img-capt=Numero Dois">Imagem-2</a>
+			<a class="nav-item nav-link" href="montador?img-uri=tres.jpg&img-url=./img/&img-capt=Numero Três">Imagem-3</a>
+			<a class="nav-item nav-link" href="montador?img-uri=quatro.jpg&img-url=./img/&img-capt=Numero Quatro">Imagem-4</a>
+			<a class="nav-item nav-link" href="montador?img-uri=cinco.jpg&img-url=./img/&img-capt=Numero Cinco">Imagem-5</a>
 		</nav>
 	</header>
 	<div></div>
@@ -33,7 +36,20 @@ img-width=400px
 		
 		<figure>
 			<img alt="" src="<%=request.getAttribute("attrImg")%>">
-			<figcaption></figcaption>
+			
+			
+			<figcaption>
+			<%
+			
+			//Recuperar o valor do atributo e verificar se existe valor
+				
+				if(request.getAttribute("attrCaptFig") != null){%>
+					<%=request.getAttribute("attrCaptFig")%>
+					
+				<%}%>
+			</figcaption>
+			
+			
 		</figure>
 	
 	</section>

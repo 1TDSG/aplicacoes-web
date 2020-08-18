@@ -33,6 +33,7 @@ public class MonstadorAction extends HttpServlet {
 		//Recuperando os valores do Request
 		String nomeImg = request.getParameter("img-uri");
 		String pathImg = request.getParameter("img-url");
+		String captImg = request.getParameter("img-capt");
 		
 		//Verificando o PATH da img
 		System.out.println("PATH : " + pathImg+nomeImg);
@@ -42,6 +43,7 @@ public class MonstadorAction extends HttpServlet {
 		
 		//Primeira coisa é criar um atributo no request.
 		request.setAttribute("attrImg", pathImg+nomeImg);
+		request.setAttribute("attrCaptFig", captImg);
 		
 		//Segunda coisa é criar o dispatcher para o index.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
