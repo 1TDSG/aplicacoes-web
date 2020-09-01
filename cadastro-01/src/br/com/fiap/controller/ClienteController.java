@@ -80,7 +80,33 @@ public class ClienteController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//Realizando a recepção do dados do FORMULÁRIO! ==INICIO
+		//Passo - 1 = Criar a instância da classe Cliente
+		Cliente cli = null;
 		
+		//Criando o objeto e inserindo os dados do request no objeto Cliente.
+		cli = new Cliente();
+		cli.setNome(request.getParameter("txtNm"));
+		cli.setNome(request.getParameter("txtSnm"));
+	
+		//****** Criando a formatação para a data. ***********
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat sf = new SimpleDateFormat();
+		try {
+			c.setTime(sf.parse(request.getParameter("txtDtNasc")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		cli.setDtNasc(c.getTime());
+		//****** Criando a formatação para a data. ***********
+		
+		cli.setGenero(request.getParameter("txtGen").charAt(0));
+		cli.setTelefone(Long.parseLong(request.getParameter("txtTel")));
+		//Realizando a recepção do dados do FORMULÁRIO! ==FIM
+		
+		//Passo - 2 = Adicionar os dados ao banco de dados virtual, na lista.
+		//Adiciona o objeto na lista
+		lista.add(cli);
 		
 		
 	}
