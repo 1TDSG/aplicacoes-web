@@ -38,6 +38,13 @@ img-width=400px
 			<img alt="" src="<%=request.getAttribute("attrImg")%>">
 			
 			
+			
+			<% %>
+			
+			
+			<%= %>
+			
+			
 			<figcaption>
 			<%
 			
