@@ -18,7 +18,7 @@
 	<div></div>
 
 	<section>
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="clientes" method="post">
 			<fieldset>
 				<legend>Cadastro de Pessoas</legend>
 				<div class="form-group">
