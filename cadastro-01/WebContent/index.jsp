@@ -42,7 +42,7 @@
 							required="required">
 					</div>
 				</div>
-			<div class="form-group">
+			<div class="form-group">    
 					<label class="control-label col-sm-4" for="idGen">Genero</label>
 					<div class="col-sm-8">
 						<select class="form-control" id="idGen" name="txtGen" required="required">
@@ -53,7 +53,19 @@
 						</select>
 					</div>
 				</div>
-
+			<div class="form-group">
+					<label class="control-label col-sm-4" for="idTel">Telefone</label>
+					<div class="col-sm-8">
+						<input type="tel" class="form-control" id="idTel" name="txtTel"
+							required="required">
+					</div>
+				</div>
+ 
+			<div class="form-group">
+				<div class="col-sm-offset-4 col-sm-8">
+					<button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+				</div>
+			</div>
 
 			</fieldset>
 		</form>
