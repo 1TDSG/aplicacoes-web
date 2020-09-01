@@ -45,6 +45,7 @@
 					out.println("<td>"+ cli.getNome() + " "+cli.getSobrenome()+"</td>");
 					out.println("<td>"+ cli.getDtNasc() +"</td>");
 					
+					//Condição para o genêro
 					if(cli.getGenero() == 'm'){
 						out.println("<td>Masculino</td>");
 					}else if(cli.getGenero() == 'f'){
@@ -54,6 +55,8 @@
 					}
 					
 					out.println("<td>"+ cli.getTelefone() +"</td>");
+					//Direcionamento para a edição de um cliente...
+					//Criando uma QueryString direta passando o ID do cliente.
 					out.println("<td><a href=editar?id-cli="+ count +">Editar</a></td>");
 					out.println("</tr>");
 					count++;
