@@ -17,6 +17,10 @@ img-alt=valor o aluno decide
 img-title=valor o aluno decide
 img-width=400px
  -->
+ 
+ <%-- COMENTÁRIO TRANSPARENTE AO USUÁRIO --%>
+ 
+ 
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="">MENU</a>
