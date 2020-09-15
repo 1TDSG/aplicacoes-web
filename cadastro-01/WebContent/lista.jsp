@@ -1,8 +1,8 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@page import="br.com.fiap.bean.Cliente"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,6 @@
 <title>LISTAGEM</title>
 </head>
 <body>
-
 
 	<header>
 		<nav></nav>
@@ -27,42 +26,41 @@
 				<th>Dt Nasc</th>
 				<th>Genêro</th>
 				<th>Tel</th>
-				<th>Editar</th>
+				<th colspan="2">Editar</th>
 			</tr>
 		<!-- Montando a tabela dinâmicamente com os dados dos atributos -->
 		<!-- que estão chegando no request.-->
 
 			<!--Criando uma linha na tabela-->
-			<% 
+			<%-- Recuperando dados do request com EL e JSTL --%>
+			
+		<c:forEach var="cli" items="${listaCli}" varStatus="id">
+			<tr>
+				<td>${id.count}</td>
+				<td>${cli.nome}</td>
+				<td>${cli.dtNasc}</td>
 				
-				//Realizando a recepção do atributo que foi enviado no request.
-				List<Cliente> lista = (List<Cliente>)request.getAttribute("listaCli");
-				int count = 1;
-				for(Cliente cli : lista){
+				<c:choose>
+					<c:when test="${cli.genero eq m}">
+						<td>Masculino</td>
+					</c:when>
+					<c:when test="${cli.genero eq f}">
+						<td>Feminino</td>
+					</c:when>
+					<c:when test="${cli.genero eq o}">
+						<td>Outros</td>
+					</c:when>
+					<c:otherwise>
+						<td>Não quero responder</td>
+					</c:otherwise>
+				</c:choose>
 				
-					out.println("<tr>");
-					out.println("<td>"+count+"</td>");
-					out.println("<td>"+ cli.getNome() + " "+cli.getSobrenome()+"</td>");
-					out.println("<td>"+ cli.getDtNasc() +"</td>");
-					
-					//Condição para o genêro
-					if(cli.getGenero() == 'm'){
-						out.println("<td>Masculino</td>");
-					}else if(cli.getGenero() == 'f'){
-						out.println("<td>Feminino</td>");
-					}else if(cli.getGenero() == 'o'){
-						out.println("<td>Outros</td>");
-					}
-					
-					out.println("<td>"+ cli.getTelefone() +"</td>");
-					//Direcionamento para a edição de um cliente...
-					//Criando uma QueryString direta passando o ID do cliente.
-					out.println("<td><a href=editar?id-cli="+ count +">Editar</a></td>");
-					out.println("</tr>");
-					count++;
-				}
-			%>
-			<!--Criando uma linha na tabela-->
+				<td>${cli.telefone}</td>
+				
+				<td><a href="listar?idCli=${id.count}">Atualizar</a></td>
+				<td><a href="listar?idCli=${id.count}">Excluir</a></td>
+			</tr>
+		</c:forEach>
 			
 		</table>
 		

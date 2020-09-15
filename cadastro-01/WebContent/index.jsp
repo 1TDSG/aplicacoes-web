@@ -18,28 +18,29 @@
 	<div></div>
 
 	<section>
-		<form class="form-horizontal" action="clientes" method="post">
+		
+		<form class="form-horizontal" action="${action == 'update' ?'update' : 'clientes'}" method="post">
 			<fieldset>
 				<legend>Cadastro de Pessoas</legend>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="idNm">Nome</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="idNm" name="txtNm"
-							placeholder="Digite seu nome" required="required">
+							placeholder="Digite seu nome" required="required" value="${objCli.nome}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="idSnm">Sobrenome</label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="idSnm" name="txtSnm"
-							placeholder="Digite seu sobrenome" required="required">
+							placeholder="Digite seu sobrenome" required="required" value="${objCli.sobrenome}">
 					</div>
 				</div>
 			<div class="form-group">
 					<label class="control-label col-sm-4" for="idDtNasc">Data de Nascimento</label>
 					<div class="col-sm-8">
 						<input type="date" class="form-control" id="idDtNasc" name="txtDtNasc"
-							required="required">
+							required="required" value="${objCli.dtNasc}">
 					</div>
 				</div>
 			<div class="form-group">    
@@ -57,7 +58,7 @@
 					<label class="control-label col-sm-4" for="idTel">Telefone</label>
 					<div class="col-sm-8">
 						<input type="tel" class="form-control" id="idTel" name="txtTel"
-							required="required">
+							required="required" value="${objCli.telefone}">
 					</div>
 				</div>
  
