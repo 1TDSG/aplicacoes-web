@@ -9,14 +9,14 @@ public class Cliente {
 	private String sobrenome;
 	private Date dtNasc;
 	private char genero;
-	private long telefone;
+	private String telefone;
 
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cliente(String nome, String sobrenome, Date dtNasc, char genero, long telefone) {
+	public Cliente(String nome, String sobrenome, Date dtNasc, char genero, String telefone) {
 		super();
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -57,16 +57,16 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	public long getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(long telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 }

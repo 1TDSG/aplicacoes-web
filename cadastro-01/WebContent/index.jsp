@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
 
-<title>CADASTRO</title>
+<title>${title == 'ATUALIZAR' ?'ATUALIZAR' : 'CADASTRO'}</title>
 </head>
 <body>
 
@@ -21,7 +22,7 @@
 		
 		<form class="form-horizontal" action="${action == 'update' ?'update' : 'clientes'}" method="post">
 			<fieldset>
-				<legend>Cadastro de Pessoas</legend>
+				<legend>${legenda == 'Atualização de Dados' ? 'Atualização de Dados' : 'Cadastro de Pessoas'}</legend>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="idNm">Nome</label>
 					<div class="col-sm-8">
@@ -55,10 +56,11 @@
 					</div>
 				</div>
 			<div class="form-group">
-					<label class="control-label col-sm-4" for="idTel">Telefone</label>
+					<label class="control-label col-sm-4" for="idTel">Telefone (00) 00000-0000</label>
 					<div class="col-sm-8">
 						<input type="tel" class="form-control" id="idTel" name="txtTel"
-							required="required" value="${objCli.telefone}">
+							required="required" value="${objCli.telefone}" maxlength="15" 
+							pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}$">
 					</div>
 				</div>
  
