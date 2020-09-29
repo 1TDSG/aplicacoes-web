@@ -16,11 +16,13 @@
 		<nav></nav>
 	</header>
 
-	<div></div>
+	<div>
+		<h2>${msgStatus}</h2>
+	</div>
 
 	<section>
 		
-		<form class="form-horizontal" action="${action == 'update' ?'update' : 'clientes'}" method="post">
+		<form class="form-horizontal" action="${action == 'update' ?'update' : 'cliente'}" method="post">
 			<fieldset>
 				<legend>${legenda == 'Atualização de Dados' ? 'Atualização de Dados' : 'Cadastro de Pessoas'}</legend>
 				<div class="form-group">
