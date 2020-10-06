@@ -1,29 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="f" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
 
-<title>${title == 'ATUALIZAR' ?'ATUALIZAR' : 'CADASTRO'}</title>
+<title>UPDATE</title>
 </head>
 <body>
 
-	<%@ include file="menu-header.html" %>
-
-	<div>
-		<h2>${param.msgStatus}</h2>
-	</div>
+	<%@ include file="../menu-header.html" %>
 
 	<section>
 		
-		<form class="form-horizontal" action="${action == 'update' ?'update' : 'cliente'}" method="post">
+		<form class="form-horizontal" action="update" method="post">
+			<input type="hidden" name="txtIdCli" value="${objCli.id}" >
 			<fieldset>
-				<legend>${legenda == 'AtualizaÃ§Ã£o de Dados' ? 'AtualizaÃ§Ã£o de Dados' : 'Cadastro de Pessoas'}</legend>
+				<legend>Atualização de Dados</legend>
 				<div class="form-group">
 					<label class="control-label col-sm-4" for="idNm">Nome</label>
 					<div class="col-sm-8">
@@ -42,17 +41,33 @@
 					<label class="control-label col-sm-4" for="idDtNasc">Data de Nascimento</label>
 					<div class="col-sm-8">
 						<input type="date" class="form-control" id="idDtNasc" name="txtDtNasc"
-							required="required" value="${objCli.dtNasc}">
+							required="required" value='<f:formatDate value="${objCli.dtNasc}" pattern="yyyy-MM-dd"/>' pattern="dd-MM-yyyy"> 
 					</div>
 				</div>
 			<div class="form-group">    
 					<label class="control-label col-sm-4" for="idGen">Genero</label>
 					<div class="col-sm-8">
 						<select class="form-control" id="idGen" name="txtGen" required="required">
-							<option value="0" selected="selected">Selecione uma opÃ§Ã£o.</option>
-							<option value="m">Masculino</option>
-							<option value="f">Feminino</option>
-							<option value="o">Outros</option>
+						<c:choose>
+							<c:when test="${objCli.genero eq 'm'.charAt(0)}">
+								<option value="0">Selecione uma opção.</option>
+								<option value="m" selected="selected">Masculino</option>
+								<option value="f">Feminino</option>
+								<option value="o">Outros</option>
+							</c:when>
+							<c:when test="${objCli.genero eq 'f'.charAt(0)}">
+								<option value="0">Selecione uma opção.</option>
+								<option value="m">Masculino</option>
+								<option value="f" selected="selected">Feminino</option>
+								<option value="o">Outros</option>
+							</c:when>
+							<c:otherwise>
+								<option value="0">Selecione uma opção.</option>
+								<option value="m">Masculino</option>
+								<option value="f">Feminino</option>
+								<option value="o" selected="selected">Outros</option>
+							</c:otherwise>
+						</c:choose>
 						</select>
 					</div>
 				</div>
@@ -67,7 +82,7 @@
  
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-8">
-					<button type="submit" class="btn btn-success btn-lg">Cadastrar</button>
+					<button type="submit" class="btn btn-info btn-lg">Atualizar</button>
 				</div>
 			</div>
 
