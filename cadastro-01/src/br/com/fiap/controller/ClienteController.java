@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 
 import br.com.fiap.bean.Cliente;
 import br.com.fiap.bo.ClienteBO;
@@ -17,7 +19,7 @@ import br.com.fiap.bo.ClienteBO;
 /**
  * Servlet implementation class ClienteController
  */
-@WebServlet( urlPatterns = { "/cliente", "/list-cli", "/listar", "/update", "/excluir"})
+@WebServlet( urlPatterns = { "/cliente", "/list-cli", "/listar", "/update", "/excluir", "/auxiliar"})
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -60,6 +62,10 @@ public class ClienteController extends HttpServlet {
 		case "/cadastro-01/excluir":
 			apagarCliente(request, response, Integer.parseInt(request.getParameter("idCli")));
 			break;
+
+		case "/cadastro-01/auxiliar":
+			alteraLingua(request, response);
+			break;
 			
 		default:
 			response.sendRedirect("index.jsp?msgStaus=PASSOU DIRETO");
@@ -69,6 +75,24 @@ public class ClienteController extends HttpServlet {
 	}
 	
 	
+	public void alteraLingua(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+		//Receber o parâmetro de escolha do usuário, ou seja, o LOCALE
+		//LOCALE é igual á : pt-br,en,de,fr,es,jp,rs,ch, etc;
+		
+		//Criando o objeto LOCALE e já recebendo o parâmetro do usuário.
+		Locale locale = new Locale(request.getParameter("lingua"));
+		
+		//Configurando o LOCALE do SERVIDOR no caso da INSTÂNCIA do usuário
+		Config.set(request.getSession(), Config.FMT_LOCALE, locale);
+		
+		//Configurando o LOCALE do Usuário apenas na sessão com o nosso sistema.
+		Config.set(request.getSession(), Config.FMT_FALLBACK_LOCALE , locale);
+				
+		//Realizando um redirecionamento.
+		response.sendRedirect("index.jsp");
+	}
+
 	//EXCLUINDO CLIENTE
 	public void apagarCliente(HttpServletRequest request, HttpServletResponse response, int idCli) throws IOException {
 		
@@ -83,9 +107,9 @@ public class ClienteController extends HttpServlet {
 			//Criar uma mensagem em um par�metro e enviar por redirecionamento atrav�s do
 			//Redirect| Obs: Este par�metro deve ser recebido no JSP com o contexto do PARAM.
 			// Ex: param.nomeDoParametro.
-			response.sendRedirect("index.jsp?msgStatus=Dados excluidos com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.del");
 		}else {
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar EXCLUIR os dados!");
+			response.sendRedirect("index.jsp?msgStatus=err.del");
 		}
 	}
 
@@ -114,9 +138,9 @@ public class ClienteController extends HttpServlet {
 			//Criar uma mensagem em um par�metro e enviar por redirecionamento atrav�s do
 			//Redirect| Obs: Este par�metro deve ser recebido no JSP com o contexto do PARAM.
 			// Ex: param.nomeDoParametro.
-			response.sendRedirect("index.jsp?msgStatus=Os dados foram ATUALIZADOS com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.upd");
 		}else {
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar atualizar os dados!");
+			response.sendRedirect("index.jsp?msgStatus=err.upd");
 		}
 	}
 
@@ -137,7 +161,7 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/atualiza.jsp").forward(request, response);
 		}else {
 			//Criando a mensagem de erro no par�metro em caso da lista estar nula.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao tentar atualizar os dados!");
+			response.sendRedirect("index.jsp?msgStatus=err.list_id");
 		}
 
 	}
@@ -160,7 +184,8 @@ public class ClienteController extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/lista.jsp").forward(request, response);
 		}else {
 			//Criando a mensagem de erro no par�metro em caso da lista estar nula.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um erro ao listar os dados!");
+			response.sendRedirect("index.jsp?msgStatus=err.list_all"
+					+ "");
 		}
 		
 	}
@@ -195,19 +220,19 @@ public class ClienteController extends HttpServlet {
 			//Criar uma mensagem em um par�metro e enviar por redirecionamento atrav�s do
 			//Redirect| Obs: Este par�metro deve ser recebido no JSP com o contexto do PARAM.
 			// Ex: param.nomeDoParametro.
-			response.sendRedirect("index.jsp?msgStatus=Os dados foram gravados com SUCESSO!");
+			response.sendRedirect("index.jsp?msgStatus=sucesso.ins");
 		}else if(status.equals("NOME DUPLICADO")) {
 			//CRIANDO UM ATRIBUTO NO REQUEST COM A MSG DE NOME DUPLICADO.
 			//request.setAttribute("msgStatus", "Este nome j� existe em nossa base de dados.");
 			
 			//CRIANDO UM PAR�METRO COM A MSG DE NOME DUPLICADO.
-			response.sendRedirect("index.jsp?msgStatus=Este nome j� existe em nossa base de dados.");
+			response.sendRedirect("index.jsp?msgStatus=erro.ins");
 		}else {
 			//CRIANDO UM ATRIBUTO NO REQUEST COM A MSG DE ERRO/INSUCESSO.
 			//request.setAttribute("msgStatus", "Ocorreu um ERRO na grava��o dos dados.");
 			
 			//CRIANDO UM PAR�METRO COM A MSG DE ERRO/INSUCESSO.
-			response.sendRedirect("index.jsp?msgStatus=Ocorreu um ERRO na grava��o dos dados.");
+			response.sendRedirect("index.jsp?msgStatus=erro.ins");
 		}
 		
 		//REALIZANDO O ECAMINHAMENTO.

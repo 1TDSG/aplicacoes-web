@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
 
-<title>LISTAGEM</title>
+<title><f:message key="site.paginas.lista.titulo" /></title>
 </head>
 <body>
 
@@ -21,12 +21,12 @@
 
 		<table class="table table-hover table-dark">
 			<tr>
-				<th>ID</th>
-				<th>Nome</th>
-				<th>Dt Nasc</th>
-				<th>Genêro</th>
-				<th>Tel</th>
-				<th colspan="2">Editar</th>
+				<th><f:message key="site.paginas.lista.tabela.th.id" /> </th>
+				<th><f:message key="site.paginas.lista.tabela.th.nome" /></th>
+				<th><f:message key="site.paginas.lista.tabela.th.dt_nasc" /></th>
+				<th><f:message key="site.paginas.lista.tabela.th.genero" /></th>
+				<th><f:message key="site.paginas.lista.tabela.th.telefone" /></th>
+				<th colspan="2"><f:message key="site.paginas.lista.tabela.th.editar" /></th>
 			</tr>
 		<!-- Montando a tabela dinâmicamente com os dados dos atributos -->
 		<!-- que estão chegando no request.-->

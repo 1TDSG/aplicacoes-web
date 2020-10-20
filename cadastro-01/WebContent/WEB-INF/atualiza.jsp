@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="./css/bootstrap.css">
 
-<title>UPDATE</title>
+<title><f:message key="site.paginas.atualiza.titulo"/> </title>
 </head>
 <body>
 
@@ -22,57 +22,57 @@
 		<form class="form-horizontal" action="update" method="post">
 			<input type="hidden" name="txtIdCli" value="${objCli.id}" >
 			<fieldset>
-				<legend>Atualização de Dados</legend>
+				<legend><f:message key="site.paginas.atualiza.form.legenda"/> </legend>
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idNm">Nome</label>
+					<label class="control-label col-sm-4" for="idNm"><f:message key="site.paginas.atualiza.form.campo.nome"/></label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="idNm" name="txtNm"
-							placeholder="Digite seu nome" required="required" value="${objCli.nome}">
+							placeholder='<f:message key="site.paginas.atualiza.form.campo.placeholder.nome"/>' required="required" value="${objCli.nome}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="idSnm">Sobrenome</label>
+					<label class="control-label col-sm-4" for="idSnm"><f:message key="site.paginas.atualiza.form.campo.sobrenome"/></label>
 					<div class="col-sm-8">
 						<input type="text" class="form-control" id="idSnm" name="txtSnm"
-							placeholder="Digite seu sobrenome" required="required" value="${objCli.sobrenome}">
+							placeholder='<f:message key="site.paginas.atualiza.form.campo.placeholder.sobrenome"/>' required="required" value="${objCli.sobrenome}">
 					</div>
 				</div>
 			<div class="form-group">
-					<label class="control-label col-sm-4" for="idDtNasc">Data de Nascimento</label>
+					<label class="control-label col-sm-4" for="idDtNasc"><f:message key="site.paginas.atualiza.form.campo.data_nasc"/></label>
 					<div class="col-sm-8">
 						<input type="date" class="form-control" id="idDtNasc" name="txtDtNasc"
 							required="required" value='<f:formatDate value="${objCli.dtNasc}" pattern="yyyy-MM-dd"/>' pattern="dd-MM-yyyy"> 
 					</div>
 				</div>
 			<div class="form-group">    
-					<label class="control-label col-sm-4" for="idGen">Genero</label>
+					<label class="control-label col-sm-4" for="idGen"><f:message key="site.paginas.atualiza.form.campo.genero"/></label>
 					<div class="col-sm-8">
 						<select class="form-control" id="idGen" name="txtGen" required="required">
 						<c:choose>
 							<c:when test="${objCli.genero eq 'm'.charAt(0)}">
-								<option value="0">Selecione uma opção.</option>
-								<option value="m" selected="selected">Masculino</option>
-								<option value="f">Feminino</option>
-								<option value="o">Outros</option>
+								<option value="0"><f:message key="site.paginas.atualiza.form.select.option.sel"/></option>
+								<option value="m" selected="selected"><f:message key="site.paginas.atualiza.form.select.option.m"/></option>
+								<option value="f"><f:message key="site.paginas.atualiza.form.select.option.f"/></option>
+								<option value="o"><f:message key="site.paginas.atualiza.form.select.option.o"/></option>
 							</c:when>
 							<c:when test="${objCli.genero eq 'f'.charAt(0)}">
-								<option value="0">Selecione uma opção.</option>
-								<option value="m">Masculino</option>
-								<option value="f" selected="selected">Feminino</option>
-								<option value="o">Outros</option>
+								<option value="0"><f:message key="site.paginas.atualiza.form.select.option.sel"/></option>
+								<option value="m"><f:message key="site.paginas.atualiza.form.select.option.m"/></option>
+								<option value="f" selected="selected"><f:message key="site.paginas.atualiza.form.select.option.f"/></option>
+								<option value="o"><f:message key="site.paginas.atualiza.form.select.option.o"/></option>
 							</c:when>
 							<c:otherwise>
-								<option value="0">Selecione uma opção.</option>
-								<option value="m">Masculino</option>
-								<option value="f">Feminino</option>
-								<option value="o" selected="selected">Outros</option>
+								<option value="0"><f:message key="site.paginas.atualiza.form.select.option.sel"/></option>
+								<option value="m"><f:message key="site.paginas.atualiza.form.select.option.m"/></option>
+								<option value="f"><f:message key="site.paginas.atualiza.form.select.option.f"/></option>
+								<option value="o" selected="selected"><f:message key="site.paginas.atualiza.form.select.option.o"/></option>
 							</c:otherwise>
 						</c:choose>
 						</select>
 					</div>
 				</div>
 			<div class="form-group">
-					<label class="control-label col-sm-4" for="idTel">Telefone (00) 00000-0000</label>
+					<label class="control-label col-sm-4" for="idTel"><f:message key="site.paginas.atualiza.form.campo.telefone"/>(00) 00000-0000</label>
 					<div class="col-sm-8">
 						<input type="tel" class="form-control" id="idTel" name="txtTel"
 							required="required" value="${objCli.telefone}" maxlength="15" 
@@ -82,7 +82,7 @@
  
 			<div class="form-group">
 				<div class="col-sm-offset-4 col-sm-8">
-					<button type="submit" class="btn btn-info btn-lg">Atualizar</button>
+					<button type="submit" class="btn btn-info btn-lg"><f:message key="site.paginas.atualiza.form.botao.atualizar"/></button>
 				</div>
 			</div>
 
